@@ -1,0 +1,11 @@
+\makeatletter
+\newif\if@right
+\def\shadequote{\@righttrue\shadequote@i}
+\def\shadequote@i{%\begin{snugshade}
+  \begin{quote}\openquote\quotefont}
+  \def\endshadequote{%
+    \if@right\hfill\fi\closequote\end{quote}%\end{snugshade}
+}
+\@namedef{shadequote*}{\@rightfalse\shadequote@i}
+\@namedef{endshadequote*}{\endshadequote}
+\makeatother
