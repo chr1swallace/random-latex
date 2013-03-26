@@ -1,5 +1,5 @@
-\usepackage{coloc}
-%% http://tex.stackexchange.com/questions/89539/absolute-positioning-in-beamer-when-using-show-notes-on-second-screen-text-on
+%% put a piece of text in bottom right of a beamer slide with command \br{}
+%% adapted from http://tex.stackexchange.com/questions/89539/absolute-positioning-in-beamer-when-using-show-notes-on-second-screen-text-on
 \setbeamercolor{framesource}{fg=gray}
 \setbeamerfont{framesource}{size=\footnotesize}
 \makeatletter
