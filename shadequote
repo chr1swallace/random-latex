@@ -1,3 +1,4 @@
+% insert a piece of text between large open and close quote symbols
 \makeatletter
 \newif\if@right
 \def\shadequote{\@righttrue\shadequote@i}
