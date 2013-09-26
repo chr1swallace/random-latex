@@ -1,0 +1,95 @@
+\setbeamercolor{ref}{bg=pink,fg=gray}
+\newcommand{\mycite}[1]{\begin{beamercolorbox}{ref}#1{\end{beamercolorbox}}}
+\AtBeginSection[]{\begin{frame}<beamer>\tableofcontents[currentsection]\end{frame}}
+\setbeamercolor{framesource}{fg=gray}
+\setbeamerfont{framesource}{size=\footnotesize}
+% \makeatletter
+% \renewcommand{\footnoterule}{}
+% \define@key{beamerfootnote}{nonumber}[true]{\edef\beamer@footarg{0}\def\@makefnmark{}}% have to set a number in \beamer@footarg, then it won't be automatically generated one. setting \@makefnmark to be empty means the number isn't printed. but only use this in a group else it affects following footnotes!
+% % instead of 'nonumber', could just use 0 as an optional argument to \footnote, but OP reports that keyval complains about this in some situations
+% % http://tex.stackexchange.com/questions/89539
+% \newcommand{\br}[1]{{\footnote[nonumber]{%
+%       \vfill \begin{beamercolorbox}[right,wd=\dimexpr\hsize-1.8em\relax]{framesource}
+%       \setlength\topsep{0pt}\rule{0.65\textwidth}{0.4mm}\vspace{0.5em}\\[-6pt]
+%       \usebeamerfont{framesource}\usebeamercolor[fg]{framesource}\itshape{#1}
+%     \end{beamercolorbox}}}}
+% \setlength{\footnotesep}{0cm}%\footnotesep is the space between footnotes (generated with a \rule)
+% \makeatother
+
+% http://tex.stackexchange.com/questions/32988/how-to-add-text-to-the-corner-of-a-beamer-slide
+\usepackage[absolute,overlay]{textpos}
+\newlength{\vpos}
+\setlength{\vpos}{\paperheight}
+\addtolength{\vpos}{-1.5em}
+\newlength{\hpos}
+\setlength{\hpos}{0.3\textwidth}
+\newcommand\br[1]{%
+  \begin{textblock*}{0.8\textwidth}(\hpos,\vpos)
+  \begin{beamercolorbox}[wd=\textwidth,ht=2.25ex,dp=1ex,right]{framesource}%
+    \rule{\textwidth}{0.4mm}\vspace{0.3em}\\[-6pt]
+    \usebeamerfont{framesource}\hspace*{2ex}\scriptsize\itshape{#1}
+  \end{beamercolorbox}%
+%     \usebeamerfont{framesource}\usebeamercolor[fg]{framesource}
+%     \rule{\textwidth}{0.4mm}\vspace{0.2em}\\[-6pt]
+%     \raggedleft \scriptsize  \itshape{#1}
+ \end{textblock*}}
+\newcommand\brt[1]{%
+  \begin{textblock*}{0.8\textwidth}(\hpos,\vpos)
+  \begin{beamercolorbox}[wd=\textwidth,ht=2.25ex,dp=1ex,right]{framesource}%
+    \rule{\textwidth}{0.4mm}\vspace{0.3em}\\[-6pt]
+    \usebeamerfont{framesource}\hspace*{2ex}\tiny\itshape{#1}
+  \end{beamercolorbox}%
+ \end{textblock*}}
+
+
+% insert a piece of text between large open and close quote symbols
+\usepackage[T1]{fontenc}
+\usepackage{libertine}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{framed}
+\newcommand*\openquote{\makebox(25,-22){\scalebox{5}{``}}}
+\newcommand*\closequote{\makebox(25,-22){\scalebox{5}{''}}}
+\newcommand*\quotefont{\fontfamily{fxl}}
+\makeatletter
+\newif\if@right
+\def\shadequote{\@righttrue\shadequote@i}
+\def\shadequote@i{%\begin{snugshade}
+  \begin{quote}\openquote\quotefont}
+  \def\endshadequote{%
+    \if@right\hfill\fi\closequote\end{quote}%\end{snugshade}
+}
+\@namedef{shadequote*}{\@rightfalse\shadequote@i}
+\@namedef{endshadequote*}{\endshadequote}
+\makeatother
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{blocks}[rounded]
+% \usetheme{Madrid}
+\useinnertheme{rectangles}
+% \useoutertheme{default}
+\usecolortheme{beaver} % beaver, fly
+% \usecolortheme{fly}
+% \usecolortheme{lily}
+% \usecolortheme[named=SeaGreen]{structure}
+\usefonttheme{structuresmallcapsserif}
+\usefonttheme{professionalfonts}
+\setbeamercolor{itemize item}{fg=darkred!80!black}
+\input{../logo/logo.tex}
+%\titlegraphic{\logos}
+
+\setbeamertemplate{footline}{
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=.33\paperwidth,ht=2.25ex,dp=1ex,left,rightskip=1em]{subsection in head/foot}%
+    \usebeamerfont{subsection in head/foot}\hspace*{2ex}\insertsectionhead
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.33\paperwidth,ht=2.25ex,dp=1ex,center,leftskip=1em]{subsection in head/foot}%
+    \hspace*{2em}\usebeamerfont{section in head/foot}\insertshorttitle\hspace*{2ex}
+  \end{beamercolorbox}}%
+  \begin{beamercolorbox}[wd=.33\paperwidth,ht=2.25ex,dp=1ex,right,rightskip=1em]{subsection in head/foot}%
+    \usebeamerfont{subsection in head/foot}\hspace*{2ex}\insertshortdate{}\hspace*{2em}%
+    \insertframenumber{} / \inserttotalframenumber\hspace*{2ex} 
+  \end{beamercolorbox}%
+  \vskip0pt%
+}
